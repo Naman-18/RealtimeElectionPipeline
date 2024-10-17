@@ -1,0 +1,14 @@
+{
+    "database": {
+        "host": "localhost",
+        "username": "election_user",
+        "password": "election_pass",
+        "db_name": "voting",
+        "port": 5433
+    },
+    "tables": ["candidates", "voters", "votes"],
+    "randomuser_url": "https://randomuser.me/api/?nat=in",
+    "parties": ["BJP", "INC", "TDP", "BSP", "SP", "AAP"],
+    "total_candidates": 12,
+    "total_voters": 1000
+}
