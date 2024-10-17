@@ -10,5 +10,9 @@
     "randomuser_url": "https://randomuser.me/api/?nat=in",
     "parties": ["BJP", "INC", "TDP", "BSP", "SP", "AAP"],
     "total_candidates": 12,
-    "total_voters": 1000
+    "total_voters": 1000,
+    "voting_interval": 0.5,
+    "kafka_topics": {
+        "votes_topic": "votes_topic"
+    }
 }

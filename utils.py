@@ -27,3 +27,9 @@ def get_db_connection(database_credentials):
     except Exception as exp:
         print(f"Error connecting to the database: {exp}")
         return
+
+def kafka_delivery_report(err, msg):
+    if err is not None:
+        print(f'Message delivery failed: {err}')
+    else:
+        print(f'Message delivered to {msg.topic()} [{msg.partition()}]')
