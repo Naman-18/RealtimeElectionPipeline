@@ -63,7 +63,6 @@ def generate_candidate_data(conn, cur, base_url, parties, total_candidates):
             user_data = response.json()['results'][0]
             party_affiliation = parties[i % len(parties)]
             candidate = generate_candidate_row(user_data, party_affiliation)
-            print(candidate)
             query = open('queries/candidates_insert.sql', 'r').read()
             params = candidate['candidate_id'], candidate['candidate_name'], candidate['party_affiliation'], candidate['date_of_birth'], candidate['biography'], candidate['campaign_platform'], candidate['photo_url'] 
             try:
@@ -102,7 +101,6 @@ def generate_voters_data(conn, cur, base_url, total_voters):
         if response.status_code == 200:
             user_data = response.json()['results'][0]
             voter = generate_voters_row(user_data)
-            print(voter)
             query = open('queries/voters_insert.sql', 'r').read()
             params = (voter["voter_id"], voter['voter_name'], voter['date_of_birth'], voter['gender'],
             voter['nationality'], voter['registration_number'], voter['address']['street'],
@@ -119,11 +117,11 @@ def generate_voters_data(conn, cur, base_url, total_voters):
 
 
 def setup_system(conn, cur, config):
-    # # 1. Create tables
-    # create_tables(conn, cur, config['tables'])
+    # 1. Create tables
+    create_tables(conn, cur, config['tables'])
 
-    # # 2. Generate candidates data
-    # generate_candidate_data(conn, cur, config['randomuser_url'], config['parties'], config['total_candidates'])
+    # 2. Generate candidates data
+    generate_candidate_data(conn, cur, config['randomuser_url'], config['parties'], config['total_candidates'])
 
     # 3. Generate voters data
     generate_voters_data(conn, cur, config['randomuser_url'], config['total_voters'])
