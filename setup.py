@@ -92,12 +92,15 @@ def generate_voters_data(conn, cur, base_url, total_voters):
 
 def setup_system(conn, cur, config):
     # 1. Create tables
+    print("Setup tables...")
     create_tables(conn, cur, config['tables'])
 
     # 2. Generate candidates data
+    print("Setup candidates...")
     generate_candidate_data(conn, cur, config['randomuser_url'], config['parties'], config['total_candidates'])
 
     # 3. Generate voters data
+    print('Setup voters ...')
     generate_voters_data(conn, cur, config['randomuser_url'], config['total_voters'])
 
 def main():

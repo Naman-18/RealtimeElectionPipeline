@@ -44,6 +44,7 @@ def start_voting_app(conn, cur, config, candidates, voters):
             producer.poll(0)
         except Exception as exp:
             print(f"Error: {exp}")
+            conn.rollback()
         time.sleep(config['voting_interval'])
 
 
