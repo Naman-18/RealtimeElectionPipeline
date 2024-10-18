@@ -14,5 +14,6 @@
     "voting_interval": 0.5,
     "kafka_topics": {
         "votes_topic": "votes_topic"
-    }
+    },
+    "base_dir": "/Users/naman/Desktop/DataEngineering/RealtimeElectionPipeline/"
 }

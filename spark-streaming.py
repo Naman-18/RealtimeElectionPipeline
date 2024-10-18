@@ -4,13 +4,18 @@ from pyspark.sql.functions import col, from_json
 from pyspark.sql.functions import sum as _sum
 from pyspark.sql.types import StructType, StructField, StringType, TimestampType, IntegerType
 
+from utils import load_config
+
+
 if __name__ == '__main__':
+    
+    config = load_config('config.json')
     
     # Initialize SparkSession
     spark = (SparkSession.builder
              .appName("RealtimeElectionPipeline")
              .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.3,org.scala-lang:scala-library:2.12.18')
-             .config('spark.jars', '/Users/naman/Desktop/DataEngineering/RealtimeElectionPipeline/postgresql-42.7.4.jar')
+             .config('spark.jars', config['base_dir'] + 'postgresql-42.7.4.jar')
              .getOrCreate())
 
     vote_schema = StructType([
@@ -68,7 +73,7 @@ if __name__ == '__main__':
         .format("kafka") \
         .option("kafka.bootstrap.servers", "localhost:9092") \
         .option("topic", "aggregated_votes_per_candidate") \
-        .option("checkpointLocation", "/Users/naman/Desktop/DataEngineering/RealtimeElectionPipeline/checkpoints/aggregated_votes_per_candidate") \
+        .option("checkpointLocation", config['base_dir'] + "checkpoints/aggregated_votes_per_candidate") \
         .outputMode("update") \
         .start()
 
@@ -77,7 +82,7 @@ if __name__ == '__main__':
         .format("kafka") \
         .option("kafka.bootstrap.servers", "localhost:9092") \
         .option("topic", "aggregated_turnout_by_location") \
-        .option("checkpointLocation", "/Users/naman/Desktop/DataEngineering/RealtimeElectionPipeline/checkpoints/turnout_by_location_to_kafka") \
+        .option("checkpointLocation", config['base_dir'] + "checkpoints/turnout_by_location_to_kafka") \
         .outputMode("update") \
         .start()
 
