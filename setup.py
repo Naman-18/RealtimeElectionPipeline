@@ -102,6 +102,8 @@ def setup_system(conn, cur, config):
     # 3. Generate voters data
     print('Setup voters ...')
     generate_voters_data(conn, cur, config['randomuser_url'], config['total_voters'])
+    
+    print('Setup completed')
 
 def main():
     config = load_config('config.json')

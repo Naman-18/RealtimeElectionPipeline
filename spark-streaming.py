@@ -65,7 +65,7 @@ if __name__ == '__main__':
     # Aggregates
     votes_per_candidate = enriched_votes_df.groupBy("candidate_id", "candidate_name", "party_affiliation",
                                                     "photo_url").agg(_sum("vote").alias("total_votes"))
-    turnout_by_location = enriched_votes_df.groupBy("address.state").count().alias("total_votes")
+    turnout_by_location = enriched_votes_df.groupBy("address.state").count()
     
      # Write aggregated data to Kafka topics ('aggregated_votes_per_candidate', 'aggregated_turnout_by_location')
     votes_per_candidate_to_kafka = votes_per_candidate.selectExpr("to_json(struct(*)) AS value") \
