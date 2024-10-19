@@ -60,7 +60,31 @@ source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 ```bash
 pip install -r requirements.txt
 ```
-6. Run setup.py to create Postgres tables and generate data
+6. Update config.json as per your system
+```bash
+{
+    // Database credentials
+    "database": {
+        "host": "localhost",
+        "username": "election_user",
+        "password": "election_pass",
+        "db_name": "voting",
+        "port": 5433
+    },
+    "tables": ["candidates", "voters", "votes"], # List of tables
+    "randomuser_url": "https://randomuser.me/api/?nat=in", # RandomUser API Base URL
+    "parties": ["BJP", "INC", "TDP", "BSP", "SP", "AAP"], # List of Political Parties
+    "total_candidates": 12, # configuration for total candidates 
+    "total_voters": 1000, # configuration for total voters
+    "voting_interval": 0.5, # configuration for voting simulation interval
+    "kafka_topics": {
+        "votes_topic": "votes_topic" # List of kafka topics
+    },
+    "base_dir": "/Users/naman/Desktop/DataEngineering/RealtimeElectionPipeline/" # Base directory or root path
+}
+```
+
+7. Run setup.py to create Postgres tables and generate data
 ```bash
 python3 setup.py
 ```
