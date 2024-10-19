@@ -32,7 +32,7 @@ def generate_candidate_row(user_data, party_affiliation):
 
 def generate_candidate_data(conn, cur, base_url, parties, total_candidates):
     for i in range(total_candidates):
-        response = requests.get(base_url + '&gender=' + ('female' if total_candidates % 3 == 1 else 'male'))
+        response = requests.get(base_url + '&gender=' + ('female' if i % 3 == 1 else 'male'))
         if response.status_code == 200:
             user_data = response.json()['results'][0]
             party_affiliation = parties[i % len(parties)]
