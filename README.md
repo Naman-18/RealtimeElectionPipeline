@@ -1,6 +1,10 @@
 # <div align ="center"> Realtime Election Analysis </div>
-The Real-time Election Dashboard is a data visualization tool that provides insights into election voting statistics.
+This project focuses on building a robust system to generate real-time insights into election voting statistics and leaderboards, fostering a transparent, efficient, and effective voting process. The architecture ensures seamless data streaming, processing, and visualization to deliver real-time updates to end-users.
 
+## Key Features:
+- **Real-Time Insights**: Continuously updated voting statistics and leaderboards for instant visibility into election progress.
+- **Transparency**: Promotes fairness and openness by providing stakeholders with up-to-date and accurate data.
+- **Scalability and Efficiency**: Designed to handle high volumes of concurrent data without compromising performance.
 
 ## Technologies Used
 
